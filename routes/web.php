@@ -3,6 +3,8 @@
 use App\Http\Controllers\BorrowersController;
 use App\Http\Controllers\Contact;
 use App\Http\Controllers\ContactController;
+use App\Http\Controllers\LoanController;
+use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -24,11 +26,22 @@ Route::middleware([
     'auth:sanctum',
     config('jetstream.auth_session'),
     'verified',
-])->group(function () {
-    Route::get('/dashboard', function () {
+])->prefix('/dashboard')->group(function () {
+    Route::get('/', function () {
         return view('dashboard');
     })->name('dashboard');
-    Route::resource("loan", LoanController::class);
-    Route::resource("contact", ContactController::class);
-    Route::resource('borrower', BorrowersController::class);
+    Route::get("loan/requested", [LoanController::class, "requested"])->name("loan.requested");
+    Route::get("loan/processing", [LoanController::class, "processing"])->name("loan.processing");
+    Route::get("loan/approved", [LoanController::class, "approved"])->name("loan.approved");
+    Route::get("loan/denied", [LoanController::class, "denied"])->name("loan.denied");
+    Route::get("loan/default", [LoanController::class, "default"])->name("loan.default");
+    Route::get("loan/penalty", [LoanController::class, "penalty"])->name("loan.penalty");
+    Route::get("loan/agreemenet_form", [LoanController::class, "agreemenet_form"])->name("loan.agreemenet_form");
+    Route::get("loan/settlement_form", [LoanController::class, "settlement_form"])->name("loan.settlement_form");
+
+    Route::resource("loan", LoanController::class)->names('loan');
+    Route::resource("profile", ProfileController::class)->names('profile');
+    Route::resource("contact", ContactController::class)->names('contact');
+    Route::resource('borrower', BorrowersController::class)->names('borrower');
 });
+

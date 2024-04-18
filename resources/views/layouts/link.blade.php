@@ -9,8 +9,17 @@
                 </div><!-- /.col -->
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
-                        <li class="breadcrumb-item"><a href="#">Home</a></li>
-                        <li class="breadcrumb-item active">{{ $location }}</li>
+                        <li class="breadcrumb-item "><a href="{{ route('dashboard') }}">Home</a></li>
+                        @foreach ($locations as $location)
+                            @if ($location['active'])
+                                <li class="breadcrumb-item active"><a
+                                        href="{{ route($location['route']) }}">{{ $location['name'] }}</a></li>
+                            @else
+                                <li class="breadcrumb-item"><a
+                                        href="{{ route($location['route']) }}">{{ $location['name'] }}</a></li>
+                            @endif
+                        @endforeach
+
                     </ol>
                 </div><!-- /.col -->
             </div><!-- /.row -->

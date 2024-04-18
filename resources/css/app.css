@@ -2,6 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
-[x-cloak] {
-    display: none;
+
+.empthy{
+   font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
 }

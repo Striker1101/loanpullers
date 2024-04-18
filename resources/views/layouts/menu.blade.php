@@ -12,11 +12,11 @@
          <!-- Sidebar user panel (optional) -->
          <div class="user-panel mt-3 pb-3 mb-3 d-flex">
              <div class="image">
-                 <img src="{{ asset('assets/dist/img/user2-160x160.jpg') }}" class="img-circle elevation-2"
-                     alt="User Image">
+                 <img src="{{ auth()->user()->profile_photo_path ?? asset('assets/dist/img/user2-160x160.jpg') }}"
+                     class="img-circle elevation-2" alt="User Image">
              </div>
              <div class="info">
-                 <a href="" class="d-block">{{ auth()->user()->name }}</a>
+                 <a href="{{ route('profile.index') }}" class="d-block">{{ auth()->user()->name }}</a>
              </div>
          </div>
 
@@ -39,7 +39,7 @@
                  data-accordion="false">
                  <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
-                 <li class="nav-item menu-open">
+                 {{-- <li class="nav-item menu-open">
                      <a href="#" class="nav-link {{ request()->routeIs('borrower.*') ? 'active' : '' }}">
                          <i class="nav-icon fas fa-building"></i>
                          <p>
@@ -76,7 +76,7 @@
 
 
                      </ul>
-                 </li>
+                 </li> --}}
 
 
                  <li class="nav-item">
@@ -90,18 +90,9 @@
                      </a>
                      <ul class="nav nav-treeview">
 
-                         <li class="nav-item">
-                             <a href=""
-                                 class="nav-link {{ request()->routeIs('inventory_category.create') ? 'active' : '' }}">
-                                 <i class="far fa-circle nav-icon"></i>
-                                 <p>Add Loan Type</p>
-                             </a>
-                         </li>
-
-
 
                          <li class="nav-item">
-                             <a href=""
+                             <a href="{{ route('loan.index') }}"
                                  class="nav-link {{ request()->routeIs('inventory.*') ? 'active' : '' }}">
                                  <i class="far fa-circle nav-icon"></i>
                                  <p>Add Loan</p>
@@ -109,77 +100,68 @@
                          </li>
 
                          <li class="nav-item">
-                             <a href=""
+                             <a href="{{ route('loan.requested') }}"
                                  class="nav-link {{ request()->routeIs('inventory.*') ? 'active' : '' }}">
                                  <i class="far fa-circle nav-icon"></i>
                                  <p>Pending Loans</p>
                              </a>
                          </li>
+
                          <li class="nav-item">
-                             <a href=""
+                             <a href="{{ route('loan.processing') }}"
+                                 class="nav-link {{ request()->routeIs('inventory.*') ? 'active' : '' }}">
+                                 <i class="far fa-circle nav-icon"></i>
+                                 <p>Loans Processing</p>
+                             </a>
+                         </li>
+
+                         <li class="nav-item">
+                             <a href="{{ route('loan.approved') }}"
                                  class="nav-link {{ request()->routeIs('inventory.*') ? 'active' : '' }}">
                                  <i class="far fa-circle nav-icon"></i>
                                  <p>Active Loans</p>
                              </a>
                          </li>
+
                          <li class="nav-item">
-                             <a href=""
+                             <a href="{{ route('loan.denied') }}"
                                  class="nav-link {{ request()->routeIs('inventory.*') ? 'active' : '' }}">
                                  <i class="far fa-circle nav-icon"></i>
                                  <p>Denied Loans</p>
                              </a>
                          </li>
+
                          <li class="nav-item">
-                             <a href=""
-                                 class="nav-link {{ request()->routeIs('inventory.*') ? 'active' : '' }}">
-                                 <i class="far fa-circle nav-icon"></i>
-                                 <p>Fully Paid Loans</p>
-                             </a>
-                         </li>
-                         <li class="nav-item">
-                             <a href=""
-                                 class="nav-link {{ request()->routeIs('inventory.*') ? 'active' : '' }}">
-                                 <i class="far fa-circle nav-icon"></i>
-                                 <p>Overdue Loans</p>
-                             </a>
-                         </li>
-                         <li class="nav-item">
-                             <a href=""
+                             <a href="{{ route('loan.default') }}"
                                  class="nav-link {{ request()->routeIs('inventory.*') ? 'active' : '' }}">
                                  <i class="far fa-circle nav-icon"></i>
                                  <p>Defaulted Loans</p>
                              </a>
                          </li>
+
                          <li class="nav-item">
-                             <a href=""
-                                 class="nav-link {{ request()->routeIs('inventory.*') ? 'active' : '' }}">
-                                 <i class="far fa-circle nav-icon"></i>
-                                 <p>Loan Reschedules</p>
-                             </a>
-                         </li>
-                         <li class="nav-item">
-                             <a href=""
+                             <a href="{{ route('loan.penalty') }}"
                                  class="nav-link {{ request()->routeIs('inventory.*') ? 'active' : '' }}">
                                  <i class="far fa-circle nav-icon"></i>
                                  <p>Loan Penalty</p>
                              </a>
                          </li>
+
                          <li class="nav-item">
-                             <a href=""
-                                 class="nav-link {{ request()->routeIs('inventory.*') ? 'active' : '' }}">
-                                 <i class="far fa-circle nav-icon"></i>
-                                 <p>Payments Updates</p>
-                             </a>
-                         </li>
-                         <li class="nav-item">
-                             <a href=""
+                             <a href="{{ route('loan.agreemenet_form') }}"
                                  class="nav-link {{ request()->routeIs('inventory.*') ? 'active' : '' }}">
                                  <i class="far fa-circle nav-icon"></i>
                                  <p>Loan Agreement Forms</p>
                              </a>
                          </li>
 
-
+                         <li class="nav-item">
+                             <a href="{{ route('loan.settlement_form') }}"
+                                 class="nav-link {{ request()->routeIs('inventory.*') ? 'active' : '' }}">
+                                 <i class="far fa-circle nav-icon"></i>
+                                 <p>Loan Settlement Forms</p>
+                             </a>
+                         </li>
                      </ul>
                  </li>
 

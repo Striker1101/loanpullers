@@ -23,6 +23,7 @@
         "livewire/livewire": "^3.0",
         "owenvoke/blade-fontawesome": "^2.4",
         "phpoffice/phpword": "^1.1",
+        "protonemedia/laravel-splade": "^1.4",
         "realrashid/sweet-alert": "^7.1"
     },
     "require-dev": {

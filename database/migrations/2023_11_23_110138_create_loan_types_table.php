@@ -4,8 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration
-{
+return new class extends Migration {
     /**
      * Run the migrations.
      */
@@ -14,8 +13,8 @@ return new class extends Migration
         Schema::create('loan_types', function (Blueprint $table) {
             $table->id();
             $table->string('loan_name');
-            $table->decimal('interest_rate', 10, 2);            
-            $table->string('interest_cycle');
+            $table->decimal('interest_rate', 10, 2);
+            $table->enum('interest_cycle', ['daily', 'weekly', 'monthly', 'yearly'])->default('monthly');
             $table->timestamps();
         });
     }
