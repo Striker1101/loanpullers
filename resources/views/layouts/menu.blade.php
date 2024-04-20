@@ -12,11 +12,28 @@
          <!-- Sidebar user panel (optional) -->
          <div class="user-panel mt-3 pb-3 mb-3 d-flex">
              <div class="image">
-                 <img src="{{ auth()->user()->profile_photo_path ?? asset('assets/dist/img/user2-160x160.jpg') }}"
+                 <img src="{{ auth()->user()->profile_photo_path ?? asset('avater.png') }}"
                      class="img-circle elevation-2" alt="User Image">
              </div>
              <div class="info">
                  <a href="{{ route('profile.index') }}" class="d-block">{{ auth()->user()->name }}</a>
+             </div>
+
+             <div class="info">
+                 {{-- Total Balance of approved loans --}}
+                 Total Balance:
+                 <?php
+                 $totalBalance = \App\Models\Loan::where('loan_status', 'approved')->sum('principal_amount');
+                 echo $totalBalance;
+                 ?>
+                 <br>
+
+                 {{-- Number of active wallets with amount > 0 --}}
+                 Active Wallets:
+                 <?php
+                 $activeWalletsCount = \App\Models\Wallet::where('amount', '>', 0)->count();
+                 echo $activeWalletsCount;
+                 ?>
              </div>
          </div>
 
@@ -50,7 +67,7 @@
                      <ul class="nav nav-treeview">
                          <li class="nav-item">
                              <a href="{{ route('borrower.index') }}"
-                                 class="nav-link {{ request()->routeIs('vendors.index') ? 'active' : '' }}">
+                                 class="nav-link {{ request()->routeIs('borrower.index') ? 'active' : '' }}">
                                  <i class="far fa-circle nav-icon"></i>
                                  <p>All Borowers</p>
                              </a>
@@ -61,7 +78,7 @@
 
                  <li class="nav-item">
                      <a href="#"
-                         class="nav-link {{ request()->routeIs('inventory_category.*') || request()->routeIs('inventory.*') ? 'active' : '' }}">
+                         class="nav-link {{ request()->routeIs('loan.*') || request()->routeIs('loan.*') ? 'active' : '' }}">
                          <i class="nav-icon fas fa-store"></i>
                          <p>
                              Loans
@@ -73,7 +90,7 @@
 
                          <li class="nav-item">
                              <a href="{{ route('loan.index') }}"
-                                 class="nav-link {{ request()->routeIs('inventory.*') ? 'active' : '' }}">
+                                 class="nav-link {{ request()->routeIs('loan.*') ? 'active' : '' }}">
                                  <i class="far fa-circle nav-icon"></i>
                                  <p>Add Loan</p>
                              </a>
@@ -81,7 +98,7 @@
 
                          <li class="nav-item">
                              <a href="{{ route('loan.requested') }}"
-                                 class="nav-link {{ request()->routeIs('inventory.*') ? 'active' : '' }}">
+                                 class="nav-link {{ request()->routeIs('loan.*') ? 'active' : '' }}">
                                  <i class="far fa-circle nav-icon"></i>
                                  <p>Pending Loans</p>
                              </a>
@@ -89,7 +106,7 @@
 
                          <li class="nav-item">
                              <a href="{{ route('loan.processing') }}"
-                                 class="nav-link {{ request()->routeIs('inventory.*') ? 'active' : '' }}">
+                                 class="nav-link {{ request()->routeIs('loan.*') ? 'active' : '' }}">
                                  <i class="far fa-circle nav-icon"></i>
                                  <p>Loans Processing</p>
                              </a>
@@ -97,7 +114,7 @@
 
                          <li class="nav-item">
                              <a href="{{ route('loan.approved') }}"
-                                 class="nav-link {{ request()->routeIs('inventory.*') ? 'active' : '' }}">
+                                 class="nav-link {{ request()->routeIs('loan.*') ? 'active' : '' }}">
                                  <i class="far fa-circle nav-icon"></i>
                                  <p>Active Loans</p>
                              </a>
@@ -105,7 +122,7 @@
 
                          <li class="nav-item">
                              <a href="{{ route('loan.denied') }}"
-                                 class="nav-link {{ request()->routeIs('inventory.*') ? 'active' : '' }}">
+                                 class="nav-link {{ request()->routeIs('loan.*') ? 'active' : '' }}">
                                  <i class="far fa-circle nav-icon"></i>
                                  <p>Denied Loans</p>
                              </a>
@@ -113,7 +130,7 @@
 
                          <li class="nav-item">
                              <a href="{{ route('loan.default') }}"
-                                 class="nav-link {{ request()->routeIs('inventory.*') ? 'active' : '' }}">
+                                 class="nav-link {{ request()->routeIs('loan.*') ? 'active' : '' }}">
                                  <i class="far fa-circle nav-icon"></i>
                                  <p>Defaulted Loans</p>
                              </a>
@@ -121,7 +138,7 @@
 
                          <li class="nav-item">
                              <a href="{{ route('loan.penalty') }}"
-                                 class="nav-link {{ request()->routeIs('inventory.*') ? 'active' : '' }}">
+                                 class="nav-link {{ request()->routeIs('loan.*') ? 'active' : '' }}">
                                  <i class="far fa-circle nav-icon"></i>
                                  <p>Loan Penalty</p>
                              </a>
@@ -129,7 +146,7 @@
 
                          <li class="nav-item">
                              <a href="{{ route('loan.agreemenet_form') }}"
-                                 class="nav-link {{ request()->routeIs('inventory.*') ? 'active' : '' }}">
+                                 class="nav-link {{ request()->routeIs('loan.*') ? 'active' : '' }}">
                                  <i class="far fa-circle nav-icon"></i>
                                  <p>Loan Agreement Forms</p>
                              </a>
@@ -137,7 +154,7 @@
 
                          <li class="nav-item">
                              <a href="{{ route('loan.settlement_form') }}"
-                                 class="nav-link {{ request()->routeIs('inventory.*') ? 'active' : '' }}">
+                                 class="nav-link {{ request()->routeIs('loan.*') ? 'active' : '' }}">
                                  <i class="far fa-circle nav-icon"></i>
                                  <p>Loan Settlement Forms</p>
                              </a>
@@ -204,7 +221,7 @@
 
 
                  <li class="nav-item">
-                     <a href="" class="nav-link {{ request()->routeIs('wallets.*') ? 'active' : '' }}">
+                     <a href="" class="nav-link {{ request()->routeIs('account.*') ? 'active' : '' }}">
                          <i class="nav-icon fas fa-book"></i>
                          <p>
                              Accounts
@@ -215,7 +232,7 @@
 
                          <li class="nav-item">
                              <a href="{{ route('account.index') }}"
-                                 class="nav-link {{ request()->routeIs('wallets.index') ? 'active' : '' }}">
+                                 class="nav-link {{ request()->routeIs('account.index') ? 'active' : '' }}">
                                  <i class="far fa-circle nav-icon"></i>
                                  <p>All Accounts</p>
                              </a>
@@ -223,7 +240,7 @@
 
                          <li class="nav-item">
                              <a href="{{ route('account.create') }}"
-                                 class="nav-link {{ request()->routeIs('cashbook.create') ? 'active' : '' }}">
+                                 class="nav-link {{ request()->routeIs('account.create') ? 'active' : '' }}">
                                  <i class="far fa-circle nav-icon"></i>
                                  <p>Create Account</p>
                              </a>
@@ -233,8 +250,7 @@
                  </li>
 
                  <li class="nav-item">
-                     <a href="#"
-                         class="nav-link {{ request()->routeIs('users-management.*') ? 'active' : '' }}">
+                     <a href="#" class="nav-link {{ request()->routeIs('users.*') ? 'active' : '' }}">
                          <i class="nav-icon fas fa-cog"></i>
                          <p>
                              Users & System
@@ -243,39 +259,29 @@
                      </a>
                      <ul class="nav nav-treeview">
                          <li class="nav-item">
-                             <a href=""
-                                 class="nav-link {{ request()->routeIs('users-management.index') ? 'active' : '' }}">
+                             <a href="{{ route('user.index') }}"
+                                 class="nav-link {{ request()->routeIs('users.index') ? 'active' : '' }}">
                                  <i class="far fa-circle nav-icon"></i>
-                                 <p>User Management</p>
+                                 <p>User Profile</p>
+                             </a>
+                         </li>
+
+                         <li class="nav-item">
+                             <a href="{{ route('user.kin') }}"
+                                 class="nav-link {{ request()->routeIs('user.kin') ? 'active' : '' }}">
+                                 <i class="far fa-circle nav-icon"></i>
+                                 <p>Next Of Kin</p>
                              </a>
                          </li>
 
 
                          <li class="nav-item">
-                             <a href=""
-                                 class="nav-link {{ request()->routeIs('branch.index') ? 'active' : '' }}">
+                             <a href="{{ route('user.attachment') }}"
+                                 class="nav-link {{ request()->routeIs('user.attachment') ? 'active' : '' }}">
                                  <i class="far fa-circle nav-icon"></i>
-                                 <p>Manage Branches</p>
+                                 <p>User Attachment</p>
                              </a>
                          </li>
-
-
-                         <li class="nav-item">
-                             <a href=""
-                                 class="nav-link {{ request()->routeIs('logs.index') ? 'active' : '' }}">
-                                 <i class="far fa-circle nav-icon"></i>
-                                 <p>User Activity</p>
-                             </a>
-                         </li>
-
-                         <li class="nav-item">
-                             <a href=""
-                                 class="nav-link {{ request()->routeIs('profile.edit') ? 'active' : '' }}">
-                                 <i class="far fa-circle nav-icon"></i>
-                                 <p>Profile Management</p>
-                             </a>
-                         </li>
-
                      </ul>
                  </li>
 
