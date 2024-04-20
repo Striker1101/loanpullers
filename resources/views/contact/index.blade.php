@@ -1,7 +1,7 @@
 @include('layouts.header', ['location' => 'Contact'])
 @include('layouts.navigation')
 @include('layouts.menu')
-@extends('layouts.link', ['location' => 'Contact'])
+@extends('layouts.link', ['location' => 'Contact', 'locations' => [['name' => 'Contact', 'route' => 'contact.index', 'active' => true]]])
 
 @section('content')
     <!-- Body of Contact -->

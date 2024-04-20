@@ -8,7 +8,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class() extends Migration {
+return new class () extends Migration {
     public function up(): void
     {
         Schema::create($this->table(), function (Blueprint $table) {
@@ -19,14 +19,14 @@ return new class() extends Migration {
                 ->enum('status', ['exchange', 'transfer', 'paid', 'refund', 'gift'])
                 ->default('transfer')
             ;
-
+            $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table
                 ->enum('status_last', ['exchange', 'transfer', 'paid', 'refund', 'gift'])
                 ->nullable()
             ;
 
-            $table->unsignedBigInteger('deposit_id');
-            $table->unsignedBigInteger('withdraw_id');
+            $table->unsignedBigInteger('deposit_id')->nullable();
+            $table->unsignedBigInteger('withdraw_id')->nullable();
 
             $table->decimal('discount', 64, 0)
                 ->default(0)
@@ -37,7 +37,7 @@ return new class() extends Migration {
             ;
 
             $table->uuid('uuid')
-                ->unique()
+                ->unique()->nullable()
             ;
             $table->timestamps();
 

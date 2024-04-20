@@ -35,9 +35,9 @@
         <div class="container">
             <h4>All Borrowers</h4>
             <br>
-            <button class="btn btn-info"><a href="{{route('borrower.create')}}" style="color:white"> New
+            {{-- <button class="btn btn-info"><a href="{{ route('borrower.create') }}" style="color:white"> New
                     Borrower</a></button>
-            <br><br>
+            <br><br> --}}
             <table class="table table-striped" id="borrowers">
                 <thead>
                     <tr>
@@ -55,21 +55,20 @@
                             <th scope="row">{{ $borrower->id }}</th>
                             <td>{{ $borrower->first_name }}</td>
                             <td>{{ $borrower->last_name }}</td>
-                            <td>{{ $borrower->dob }}</td>                           
+                            <td>{{ $borrower->dob }}</td>
 
                             <td>
-                                
-                                    <a href="{{route('borrower.show',$borrower->id)}}" class="btn btn-info btn-sm"><i
-                                            class="fa fa-eye"></i> View</a>
-                               
-                               
-                                    <a href=""
-                                        class="btn btn-primary btn-sm"><i class="fa fa-edit"></i> Edit</a>
-                                    <button type="button" class="btn btn-danger btn-sm" data-toggle="modal"
-                                        data-target="#passwordConfirmationModal{{ $borrower->id }}">
-                                        <i class="fa fa-trash"></i> Delete
-                                    </button>
-                               
+
+                                <a href="{{ route('borrower.show', $borrower->id) }}" class="btn btn-info btn-sm"><i
+                                        class="fa fa-eye"></i> View</a>
+
+
+                                {{-- <a href="" class="btn btn-primary btn-sm"><i class="fa fa-edit"></i> Edit</a>
+                                <button type="button" class="btn btn-danger btn-sm" data-toggle="modal"
+                                    data-target="#passwordConfirmationModal{{ $borrower->id }}">
+                                    <i class="fa fa-trash"></i> Delete
+                                </button> --}}
+
                             </td>
 
 

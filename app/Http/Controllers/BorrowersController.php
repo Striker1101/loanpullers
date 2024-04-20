@@ -35,7 +35,7 @@ class BorrowersController extends Controller
      */
     public function store(Request $request)
     {
-     
+
         $request->validate([
             'first_name' => ['required', 'string', 'max:255'],
             'last_name' => ['required', 'string', 'max:255'],
@@ -50,7 +50,7 @@ class BorrowersController extends Controller
             'province' => ['required', 'string', 'max:255'],
             'zipcode' => ['nullable', 'string', 'max:255'],
             'files.*' => 'nullable|mimes:pdf,png,docx,jpg,jpeg|max:10240',
-            
+
         ], [
             'dob.before' => 'The date of birth must be before 1st January 2005.',
             'email.unique' => "The Email address is already in use.",
@@ -59,10 +59,10 @@ class BorrowersController extends Controller
         ]);
         try {
 
-            
+
 
             $storeDataWithoutFiles = Borrower::create($request->all());
-           
+
             if ($request->hasFile('files')) {
                 foreach ($request->file('files') as $file) {
                     $filename = uniqid() . '_' . $file->getClientOriginalName();
@@ -132,7 +132,7 @@ class BorrowersController extends Controller
 
 
 
-            $findBorrower = Borrowers::findOrFail($borrower);
+            $findBorrower = Borrower::findOrFail($borrower);
             $findBorrower->update($request->except('files'));
 
             if ($request->hasFile('files')) {
@@ -193,7 +193,7 @@ class BorrowersController extends Controller
                 return redirect()->route('expenses.index');
             }
         } catch (\Exception $e) {
-            toast('Whoops!!! Something went wrong ' .  $e->getMessage(), 'warning');
+            toast('Whoops!!! Something went wrong ' . $e->getMessage(), 'warning');
             return redirect()->route('expenses.index');
         }
     }

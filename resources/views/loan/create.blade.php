@@ -29,10 +29,9 @@
 
     <form id="loanForm" method="post" action={{ route('loan.store') }} class="needs-validation" novalidate>
         @csrf
-
-        <div class="form-group">
-            <select class="form-control mb-3" aria-label="Large select" name="borrower_id" id="borrower_id" required>
-                <option value="">Select Borrower</option>
+        <div class="input-group mb-3">
+            <label class="input-group-text" for="borrower_id">Borrower ID:</label>
+            <select class="form-control" id="borrower_id">
                 @foreach ($borrowers as $borrower)
                     <option value="{{ $borrower->id }}">{{ ucfirst($borrower->first_name) }}
                         {{ ucfirst($borrower->last_name) }}</option>
@@ -45,22 +44,19 @@
             </div>
         </div>
 
-        <div class="form-group">
-
-            <select class="form-control" name="loan_type_id" id="loan_type_id" required>
-                <option value="">Select Loan Types</option>
+        <div class="input-group mb-3">
+            <label class="input-group-text" for="loan_type_id">Loan Type ID:</label>
+            <select class="form-control" id="loan_type_id">
                 @foreach ($loanTypes as $loanType)
                     <option value="{{ $loanType->id }}" data-interest_rate="{{ $loanType->interest_rate }}"
                         data-interest-cycle="{{ $loanType->interest_cycle }}">
                         {{ ucfirst($loanType->loan_name) }}</option>
                 @endforeach
             </select>
-
             <div class="invalid-feedback">
                 Please provide a valid loan type ID.
             </div>
         </div>
-
 
         <div class="form-group">
             <label for="principal_amount"> Amount:</label>

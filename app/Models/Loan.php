@@ -11,17 +11,24 @@ class Loan extends Model
 
     public function loan_type()
     {
-        
-        return $this->belongsTo(LoanType::class, 'loan_type_id','id');
+
+        return $this->belongsTo(LoanType::class, 'loan_type_id', 'id');
     }
 
     public function borrower()
     {
-        
-        return $this->belongsTo(Borrower::class, 'borrower_id','id');
+
+        return $this->belongsTo(Borrower::class, 'borrower_id', 'id');
     }
 
-    public function getLoanDueDateAttribute($value) {
+    public function user()
+    {
+
+        return $this->belongsTo(User::class, 'user_id', 'id');
+    }
+
+    public function getLoanDueDateAttribute($value)
+    {
         return date('d,F Y', strtotime($value));
     }
 

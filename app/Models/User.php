@@ -66,4 +66,21 @@ class User extends Authenticatable implements Wallet
     protected $appends = [
         'profile_photo_url',
     ];
+
+    public function wallet_acc()
+    {
+
+        return $this->hasNaby(Wallet::class, 'wallet_id', 'id');
+    }
+    public function loan()
+    {
+
+        return $this->hasMany(Loan::class, 'loan_id', 'id');
+    }
+
+    public function account()
+    {
+
+        return $this->hasMany(Account::class, 'account_id', 'id');
+    }
 }

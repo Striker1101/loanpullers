@@ -34,7 +34,6 @@ class LoanController extends Controller
             ->orWhere('loan_release_date', 'like', "%$search%")
             ->orWhere('loan_duration', 'like', "%$search%")
             ->orWhere('duration_period', 'like', "%$search%")
-            // ->orWhere('status', 'like', "%$search%")
             ->orWhere('transaction_reference', 'like', "%$search%")
             ->paginate(10);
 
@@ -200,7 +199,6 @@ class LoanController extends Controller
                     ->orWhere('transaction_reference', 'like', "%$search%");
             })
             ->paginate(10);
-
         return view('loan.index', compact('loans'));
     }
 

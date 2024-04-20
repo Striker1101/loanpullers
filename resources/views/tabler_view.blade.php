@@ -15,7 +15,7 @@
             </div>
         </form>
         <button type="submit" class="btn btn-primary float-right mb-2">
-            <a href="{{ route('loan.create') }}" class="text-light">Request Loan</a>
+            <a href="{{ route('loan.create') }}" class="text-light">Request {{ $text }}</a>
         </button>
 
         <!-- Display dynamic table -->
@@ -32,7 +32,11 @@
                     @foreach ($data as $item)
                         <tr>
                             @foreach ($columns as $column)
-                                <td>{{ $item->$column }}</td>
+                                @if ($path == 'wallet' && $column == 'meta')
+                                    <td>{{ json_decode($item->$column)->currency }}</td>
+                                @else
+                                    <td>{{ $item->$column }}</td>
+                                @endif
                             @endforeach
                         </tr>
                     @endforeach
@@ -43,8 +47,8 @@
         {{ $data->links() }}
     @else
         <!-- Empty state -->
-        <div>
-            <img width="300" src="/UserDashboard/empty.svg" alt="empty" aria-describedby="empty">
+        <div class="d-flex align-items-center justify-content-center flex-column ">
+            <img width="300" src="{{ asset('empthy2.png') }}" alt="empty" aria-describedby="empty">
             <h4 class="empty">Nothing here! <span>Click here to <a href="{{ $createUrl }}">{{ $text }}</a>
                     now</span></h4>
         </div>

@@ -18,5 +18,6 @@
         'searchRoute' => route('loan.index'),
         'text' => 'request loan',
         'createUrl' => route('loan.create'),
+        'path' => 'loan',
     ])
 @endsection

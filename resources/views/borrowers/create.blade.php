@@ -27,12 +27,7 @@
     <section class="content">
 
         <div class="shadow p-3 mb-5 bg-white rounded">
-
             <form>
-
-
-
-
                 <div class="modal-body bg-white">
 
                     <ul class="nav nav-pills nav-justified mb-3">
@@ -400,7 +395,7 @@
                             <div class="row">
 
 
-                                
+
                                 <div class="col-12">
                                     <div class="">
                                         <div class="">

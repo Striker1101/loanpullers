@@ -12,11 +12,19 @@
                         <li class="breadcrumb-item "><a href="{{ route('dashboard') }}">Home</a></li>
                         @foreach ($locations as $location)
                             @if ($location['active'])
-                                <li class="breadcrumb-item active"><a
-                                        href="{{ route($location['route']) }}">{{ $location['name'] }}</a></li>
+                                @if (isset($location['route']) && $location['route'])
+                                    <li class="breadcrumb-item active"><a
+                                            href="{{ route($location['route']) }}">{{ $location['name'] }}</a></li>
+                                @else
+                                    <li class="breadcrumb-item active"><a>{{ $location['name'] }}</a></li>
+                                @endif
                             @else
-                                <li class="breadcrumb-item"><a
-                                        href="{{ route($location['route']) }}">{{ $location['name'] }}</a></li>
+                                @if (isset($location['route']) && $location['route'])
+                                    <li class="breadcrumb-item "><a
+                                            href="{{ route($location['route']) }}">{{ $location['name'] }}</a></li>
+                                @else
+                                    <li class="breadcrumb-item "><a>{{ $location['name'] }}</a></li>
+                                @endif
                             @endif
                         @endforeach
 
