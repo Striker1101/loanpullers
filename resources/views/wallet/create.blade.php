@@ -1,20 +1,10 @@
-@include('layouts.header', ['location' => 'Loan'])
+@include('layouts.header', ['location' => 'Create Wallet'])
 @include('layouts.navigation')
 @include('layouts.menu')
 @extends('layouts.link', ['location' => $wallet ? 'Update Wallet' : 'Create New Wallet', 'locations' => [['name' => 'Account', 'route' => 'wallet.index', 'active' => false], ['name' => $wallet ? 'Update ' . $wallet->name : 'Create New Wallet', 'route' => '', 'active' => true]]])
 
 @section('content')
-    @if (session('success'))
-        <div class="alert alert-success">
-            {{ session('success') }}
-        </div>
-    @endif
 
-    @if (session('error'))
-        <div class="alert alert-danger">
-            {{ session('error') }}
-        </div>
-    @endif
 
     @if ($errors->any())
         <div class="alert alert-danger">
@@ -40,8 +30,8 @@
 
         <div>
             <x-label for="name" :value="__('Name')" />
-            <x-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" required
-                autofocus autocomplete="name" value="{{ $wallet ? $wallet->name : '' }}" />
+            <x-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" required autofocus
+                autocomplete="name" value="{{ $wallet ? $wallet->name : '' }}" />
         </div>
 
         <div>

@@ -1,3 +1,9 @@
+@include('layouts.header', ['location' => 'Show User Profile'])
+@include('layouts.navigation')
+@include('layouts.menu')
+@extends('layouts.link', ['location' => 'User Profile', 'locations' => [['name' => 'Show Profile', 'route' => '', 'active' => false], ['name' => auth()->user()->name, 'route' => '', 'active' => true]]])
+
+
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">

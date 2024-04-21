@@ -95,13 +95,7 @@ class ProfileController extends Controller
     public function destroy(User $user)
     {
         //
-    }
-
-    public function attachment()
-    {
-        $user = Auth::user();
-        $attachments = $user->attachments()->get();
-
-        return $attachments;
+        $user->delete();
+        return redirect()->route('user.index')->with('success', 'Deleted Succussfully ');
     }
 }

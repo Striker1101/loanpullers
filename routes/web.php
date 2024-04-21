@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AccountController;
+use App\Http\Controllers\AttachmentController;
 use App\Http\Controllers\BorrowersController;
 use App\Http\Controllers\Contact;
 use App\Http\Controllers\ContactController;
@@ -35,6 +36,8 @@ Route::middleware([
     })->name('dashboard');
 
     // loan
+
+
     Route::get("loan/requested", [LoanController::class, "requested"])->name("loan.requested");
     Route::get("loan/processing", [LoanController::class, "processing"])->name("loan.processing");
     Route::get("loan/approved", [LoanController::class, "approved"])->name("loan.approved");
@@ -45,16 +48,17 @@ Route::middleware([
     Route::get("loan/settlement_form", [LoanController::class, "settlement_form"])->name("loan.settlement_form");
 
 
-
+    //users
     Route::resource("user", ProfileController::class)->names('user');
+    Route::get("attachment", [AttachmentController::class, "index"])->name("user.attachment");
+    Route::get('clear', [ProfileController::class, ''])->name('user.clear');
 
-    Route::get("user/attachment", [ProfileController::class, "attachment"])->name("user.attachment");
-
+    //resources
     Route::resource("loan", LoanController::class)->names('loan');
+    Route::resource("attachment", AttachmentController::class)->names('attachment');
     Route::resource("wallet", WalletController::class)->names('wallet');
     Route::resource("transfer", TransferController::class)->names('transfer');
     Route::resource("account", AccountController::class)->names('account');
-    Route::resource("profile", ProfileController::class)->names('profile');
     Route::resource("contact", ContactController::class)->names('contact');
     Route::resource('borrower', BorrowersController::class)->names('borrower');
 });

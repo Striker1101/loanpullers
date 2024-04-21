@@ -1,6 +1,7 @@
-@include('layouts.header')
+@include('layouts.header', ['location' => 'Transfer'])
 @include('layouts.navigation')
 @include('layouts.menu')
+@extends('layouts.link', ['location' => 'Transfer', 'locations' => [['name' => 'Transfer', 'route' => '', 'active' => true]]])
 
 
 

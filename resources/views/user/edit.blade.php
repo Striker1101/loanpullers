@@ -1,4 +1,4 @@
-@include('layouts.header')
+@include('layouts.header', ['location' => ' Edit User Profile'])
 @include('layouts.navigation')
 @include('layouts.menu')
 @extends('layouts.link', ['location' => 'User', 'locations' => [['name' => 'User', 'route' => 'user.index', 'active' => false]]])

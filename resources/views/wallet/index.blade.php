@@ -1,20 +1,10 @@
-@include('layouts.header', ['location' => 'Loan'])
+@include('layouts.header', ['location' => 'Wallet'])
 @include('layouts.navigation')
 @include('layouts.menu')
 @extends('layouts.link', ['location' => 'Wallet', 'locations' => [['name' => 'Wallet', 'route' => 'wallet.index', 'active' => true]]])
 
 @section('content')
-    @if (session('success'))
-        <div class="alert alert-success">
-            {{ session('success') }}
-        </div>
-    @endif
 
-    @if (session('error'))
-        <div class="alert alert-danger">
-            {{ session('error') }}
-        </div>
-    @endif
 
     @if ($errors->any())
         <div class="alert alert-danger">

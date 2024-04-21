@@ -1,4 +1,4 @@
-@include('layouts.header')
+@include('layouts.header', ['location' => 'show ' . $borrower->first_name])
 @include('layouts.navigation')
 @include('layouts.menu')
 

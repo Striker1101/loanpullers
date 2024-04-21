@@ -1,4 +1,4 @@
-@include('layouts.header', ['location' => 'Loan'])
+@include('layouts.header', ['location' => 'Make Transfer'])
 @include('layouts.navigation')
 @include('layouts.menu')
 @extends('layouts.link', ['location' => 'Transfer', 'locations' => [['name' => 'Transfer', 'route' => 'transfer.index', 'active' => false], ['name' => 'Make Transfer', 'route' => 'transfer.create', 'active' => true]]])

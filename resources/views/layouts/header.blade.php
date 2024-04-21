@@ -56,6 +56,25 @@
 <body class="hold-transition sidebar-mini layout-fixed">
     @include('sweetalert::alert')
 
+    @if (session('success'))
+        <div id="successAlert" class="alert alert-success">
+            {{ session('success') }}
+        </div>
+    @endif
+
+    @if (session('error'))
+        <div id="errorAlert" class="alert alert-danger">
+            {{ session('error') }}
+        </div>
+    @endif
+
+    <script>
+        // Fade out success and error alerts after 30 seconds
+        setTimeout(function() {
+            $('#successAlert').fadeOut();
+            $('#errorAlert').fadeOut();
+        }, 3000); // 30 seconds
+    </script>
     <div class="wrapper">
     </div>
 </body>

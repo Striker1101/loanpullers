@@ -1,4 +1,4 @@
-@include('layouts.header')
+@include('layouts.header', ['location' => 'Borrower'])
 @include('layouts.navigation')
 @include('layouts.menu')
 

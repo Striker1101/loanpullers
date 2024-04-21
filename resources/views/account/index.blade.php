@@ -1,28 +1,12 @@
-@include('layouts.header', ['location' => 'Loan'])
+@include('layouts.header', ['location' => 'Account'])
 @include('layouts.navigation')
 @include('layouts.menu')
 @extends('layouts.link', ['location' => 'Account', 'locations' => [['name' => 'Account', 'route' => 'account.index', 'active' => true]]])
 
 @section('content')
-    @if (session('success'))
-        <div id="successAlert" class="alert alert-success">
-            {{ session('success') }}
-        </div>
-    @endif
 
-    @if (session('error'))
-        <div id="errorAlert" class="alert alert-danger">
-            {{ session('error') }}
-        </div>
-    @endif
 
-    <script>
-        // Fade out success and error alerts after 30 seconds
-        setTimeout(function() {
-            $('#successAlert').fadeOut();
-            $('#errorAlert').fadeOut();
-        }, 3000); // 30 seconds
-    </script>
+
 
     @if ($accounts['bank']->count() > 0 || $accounts['crypto']->count() > 0)
         <button class="btn btn-primary float-right">

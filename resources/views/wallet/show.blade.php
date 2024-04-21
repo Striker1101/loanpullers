@@ -1,21 +1,11 @@
-@include('layouts.header', ['location' => 'Loan'])
+@include('layouts.header', ['location' => 'Show ' . $wallet->name])
 @include('layouts.navigation')
 @include('layouts.menu')
 @extends('layouts.link', ['location' => "Show  $wallet->name", 'locations' => [['name' => 'Wallet', 'route' => 'wallet.index', 'active' => false], ['name' => $wallet->name, 'route' => '', 'active' => true]]])
 
 
 @section('content')
-    @if (session('success'))
-        <div class="alert alert-success">
-            {{ session('success') }}
-        </div>
-    @endif
 
-    @if (session('error'))
-        <div class="alert alert-danger">
-            {{ session('error') }}
-        </div>
-    @endif
 
     @if ($errors->any())
         <div class="alert alert-danger">

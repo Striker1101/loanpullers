@@ -1,4 +1,4 @@
-@include('layouts.header', ['location' => 'Loan'])
+@include('layouts.header', ['location' => 'show' . $account->account_name])
 @include('layouts.navigation')
 @include('layouts.menu')
 @extends('layouts.link', ['location' => "Show  $account->account_name", 'locations' => [['name' => 'Account', 'route' => 'account.index', 'active' => false], ['name' => $account->account_name, 'route' => '', 'active' => true]]])

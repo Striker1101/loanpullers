@@ -12,15 +12,13 @@
          <!-- Sidebar user panel (optional) -->
          <div class="user-panel mt-3 pb-3 mb-3 d-flex flex-column">
              <div class="image">
-                 <img src="{{ auth()->user()->profile_photo_path ?? asset('avater.png') }}"
+                 <img src="{{ asset('storage/' . auth()->user()->profile_photo_path) ?? asset('avater.png') }}"
                      class="img-circle elevation-2" alt="User Image">
              </div>
              <div class="info">
                  <a href="{{ route('user.index') }}" class="d-block">{{ auth()->user()->name }}</a>
              </div>
              <br />
-             <hr class="text-light" style="height: 5px, width:100%;" />
-
              <div class="info text-light">
                  {{-- Total Balance of approved loans --}}
                  Total Balance:
@@ -263,16 +261,26 @@
                          </p>
                      </a>
                      <ul class="nav nav-treeview">
+
                          <li class="nav-item">
                              <a href="{{ route('user.index') }}"
-                                 class="nav-link {{ request()->routeIs('users.index') ? 'active' : '' }}">
+                                 class="nav-link {{ request()->routeIs('user.index') ? 'active' : '' }}">
                                  <i class="far fa-circle nav-icon"></i>
                                  <p>User Profile</p>
                              </a>
                          </li>
 
+
                          <li class="nav-item">
-                             <a href="{{ route('user.attachment') }}"
+                             <a href="{{ url('user/profile/') }}"
+                                 class="nav-link {{ request()->routeIs('profile.show') ? 'active' : '' }}">
+                                 <i class="far fa-circle nav-icon"></i>
+                                 <p>User Management</p>
+                             </a>
+                         </li>
+
+                         <li class="nav-item">
+                             <a href="{{ route('attachment.index') }}"
                                  class="nav-link {{ request()->routeIs('user.attachment') ? 'active' : '' }}">
                                  <i class="far fa-circle nav-icon"></i>
                                  <p>User Attachment</p>
