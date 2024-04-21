@@ -47,7 +47,7 @@ Route::middleware([
 
 
     Route::resource("user", ProfileController::class)->names('user');
-    Route::get("user/kin", [ProfileController::class, "kin"])->name("user.kin");
+
     Route::get("user/attachment", [ProfileController::class, "attachment"])->name("user.attachment");
 
     Route::resource("loan", LoanController::class)->names('loan');

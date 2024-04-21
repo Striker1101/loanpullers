@@ -10,16 +10,18 @@
      <!-- Sidebar -->
      <div class="sidebar">
          <!-- Sidebar user panel (optional) -->
-         <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+         <div class="user-panel mt-3 pb-3 mb-3 d-flex flex-column">
              <div class="image">
                  <img src="{{ auth()->user()->profile_photo_path ?? asset('avater.png') }}"
                      class="img-circle elevation-2" alt="User Image">
              </div>
              <div class="info">
-                 <a href="{{ route('profile.index') }}" class="d-block">{{ auth()->user()->name }}</a>
+                 <a href="{{ route('user.index') }}" class="d-block">{{ auth()->user()->name }}</a>
              </div>
+             <br />
+             <hr class="text-light" style="height: 5px, width:100%;" />
 
-             <div class="info">
+             <div class="info text-light">
                  {{-- Total Balance of approved loans --}}
                  Total Balance:
                  <?php
@@ -29,11 +31,14 @@
                  <br>
 
                  {{-- Number of active wallets with amount > 0 --}}
+                 @php
+                     $activeWallets = \App\Models\Wallet::where('amount', '>', 0)->get();
+                 @endphp
+
                  Active Wallets:
-                 <?php
-                 $activeWalletsCount = \App\Models\Wallet::where('amount', '>', 0)->count();
-                 echo $activeWalletsCount;
-                 ?>
+                 @foreach ($activeWallets as $wallet)
+                     <p>Name: {{ $wallet->name }}, Balance: {{ $wallet->amount }}</p>
+                 @endforeach
              </div>
          </div>
 
@@ -265,15 +270,6 @@
                                  <p>User Profile</p>
                              </a>
                          </li>
-
-                         <li class="nav-item">
-                             <a href="{{ route('user.kin') }}"
-                                 class="nav-link {{ request()->routeIs('user.kin') ? 'active' : '' }}">
-                                 <i class="far fa-circle nav-icon"></i>
-                                 <p>Next Of Kin</p>
-                             </a>
-                         </li>
-
 
                          <li class="nav-item">
                              <a href="{{ route('user.attachment') }}"

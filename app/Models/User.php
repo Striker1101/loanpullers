@@ -83,4 +83,9 @@ class User extends Authenticatable implements Wallet
 
         return $this->hasMany(Account::class, 'account_id', 'id');
     }
+
+    public function attachments()
+    {
+        return $this->hasMany(Attachment::class);
+    }
 }

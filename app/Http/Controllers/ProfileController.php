@@ -48,21 +48,60 @@ class ProfileController extends Controller
     public function edit(User $user)
     {
         //
+        return view("user.edit", compact("user"));
     }
 
     /**
      * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\RedirectResponse
      */
-    public function update(Request $request, User $user)
+    public function update(Request $request, $id)
     {
-        //
-    }
+        // Validate the incoming request data
+        $validatedData = $request->validate([
+            'name' => 'required|string|max:255',
+            'email' => 'required|string|email|max:255|unique:users,email,' . $id,
+            'profile_photo' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048', // Max file size: 2MB
+        ]);
 
+        // Find the user by ID
+        $user = User::findOrFail($id);
+
+        // Update the user's name and email
+        $user->name = $validatedData['name'];
+        $user->email = $validatedData['email'];
+
+        // Check if a new profile photo was uploaded
+        if ($request->hasFile('profile_photo')) {
+            // Store the uploaded profile photo
+            $profilePhotoPath = $request->file('profile_photo')->store('profile-photos', 'public');
+
+            // Update the user's profile photo path
+            $user->profile_photo_path = $profilePhotoPath;
+        }
+
+        // Save the updated user details
+        $user->save();
+
+        // Redirect back to the profile page with a success message
+        return redirect()->route('user.index')->with('success', 'Profile updated successfully.');
+    }
     /**
      * Remove the specified resource from storage.
      */
     public function destroy(User $user)
     {
         //
+    }
+
+    public function attachment()
+    {
+        $user = Auth::user();
+        $attachments = $user->attachments()->get();
+
+        return $attachments;
     }
 }
