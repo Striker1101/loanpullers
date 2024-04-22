@@ -60,8 +60,8 @@ class AttachmentController extends Controller
         ]);
 
         // Process file uploads and save paths
-        $frontViewPath = $request->file('front_view')->store('attachments');
-        $backViewPath = $request->has('back_view') ? $request->file('back_view')->store('attachments') : null;
+        $frontViewPath = $request->file('front_view')->store('attachment', 'public');
+        $backViewPath = $request->has('back_view') ? $request->file('back_view')->store('attachment', 'public') : null;
 
         // Store attachment details in the database
         $attachment = new Attachment();
@@ -73,7 +73,7 @@ class AttachmentController extends Controller
         $attachment->save();
 
         // Redirect back to the attachment index page with a success message
-        return redirect()->route('user.attachment.index')->with('success', 'Attachment created successfully.');
+        return redirect()->route('attachment.index')->with('success', 'Attachment created successfully.');
     }
 
 

@@ -62,6 +62,7 @@ class LoanController extends Controller
      */
     public function store(Request $request)
     {
+
         // Validate the incoming request data
         $validatedData = $request->validate([
             'borrower_id' => 'required|exists:borrowers,id',
@@ -89,7 +90,7 @@ class LoanController extends Controller
             $loan->activate_loan_agreement_form = false;
 
             if ($request->hasFile('image')) {
-                $imagePath = $request->file('image')->store('images'); // Store the image in the 'images' directory
+                $imagePath = $request->file('image')->store('loan', 'public'); // Store the image in the 'images' directory
                 // Save the image path to the 'imgpath' field of the Loan model
                 $loan->imgpath = $imagePath;
             }

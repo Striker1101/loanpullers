@@ -9,7 +9,7 @@
         <div class="row justify-content-center">
             <div class="col-md-4">
                 <div class="card mb-4 shadow-sm">
-                    <img src="{{ $user->profile_photo_path ? asset($user->profile_photo_path) : asset('noimg.jpeg') }}"
+                    <img src="{{ $user->profile_photo_path ? asset('storage/' . auth()->user()->profile_photo_path) : asset('noimg.jpeg') }}"
                         class="card-img-top" alt="Profile Photo">
                     <div class="card-body">
                         <h5 class="card-title">{{ $user->name }}</h5>

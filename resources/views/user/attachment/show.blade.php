@@ -2,7 +2,7 @@
 @include('layouts.navigation')
 @include('layouts.menu')
 
-@extends('layouts.link', ['location' => $attachment->type . ' Attachments', 'locations' => [['name' => 'User Attachment', 'route' => 'user.index', 'active' => true]]])
+@extends('layouts.link', ['location' => $attachment->type . ' Attachments', 'locations' => [['name' => 'User Attachment', 'route' => 'attachment.index', 'active' => true]]])
 
 
 @section('content')
@@ -21,9 +21,10 @@
                             <label for="description">Description:</label>
                             <p>{{ $attachment->description }}</p>
                         </div>
-                        <div class="form-group">
+                        <div class="form-group d-flex flex-column">
                             <label for="front_view">Front View:</label>
-                            <img src="{{ asset($attachment->front_view) }}" alt="Front View">
+                            <img style="width:80%;" src="{{ asset('storage/' . $attachment->front_view) }}"
+                                alt="Front View">
                         </div>
                         @if ($attachment->back_view)
                             <div class="form-group">

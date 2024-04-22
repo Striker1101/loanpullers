@@ -12,11 +12,12 @@
          <!-- Sidebar user panel (optional) -->
          <div class="user-panel mt-3 pb-3 mb-3 d-flex flex-column">
              <div class="image">
-                 <img s".auth()->user()->profile_photo_path) ?? asset('avater.png') }}"
-                 class="img-circle elevation-2" alt="User Image">
+                 <!-- HTML code to display the user's profile photo or a default avatar if no photo is available -->
+                 <img src="{{ auth()->user()->profile_photo_path ? asset('storage/' . auth()->user()->profile_photo_path) : asset('avatar.png') }}"
+                     class="img-circle elevation-2" alt="User Image">
              </div>
              <div class="info">
-                 <a href="{{ route('user.in               dex') }}" class="d-block">{{ auth()->user()->name }}</a>
+                 <a href="{{ route('user.index') }}" class="d-block">{{ auth()->user()->name }}</a>
              </div>
              <br />
              <div class="info text-light">

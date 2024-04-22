@@ -42,7 +42,7 @@
                                     <input type="file" id="profile_photo" name="profile_photo"
                                         class="form-control @error('profile_photo') is-invalid @enderror">
                                     <img id="image-preview"
-                                        src="{{ $user->profile_photo_path ? asset($user->profile_photo_path) : asset('noimg.jpeg') }}"
+                                        src="{{ $user->profile_photo_path ? asset('storage/' . auth()->user()->profile_photo_path) : asset('noimg.jpeg') }}"
                                         alt="Profile Photo Preview" class="mt-2"
                                         style="max-width: 200px; max-height: 200px;">
 

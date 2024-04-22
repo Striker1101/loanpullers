@@ -21,7 +21,7 @@
         @csrf
         <div class="input-group mb-3">
             <label class="input-group-text" for="borrower_id">Borrower ID:</label>
-            <select class="form-control" id="borrower_id">
+            <select class="form-control" id="borrower_id" name="borrower_id">
                 @foreach ($borrowers as $borrower)
                     <option value="{{ $borrower->id }}">{{ ucfirst($borrower->first_name) }}
                         {{ ucfirst($borrower->last_name) }}</option>
@@ -36,7 +36,8 @@
 
         <div class="input-group mb-3">
             <label class="input-group-text" for="loan_type_id">Loan Type ID:</label>
-            <select class="form-control" id="loan_type_id">
+            <select class="form-control" id="loan_type_id" name="loan_type_id">
+                <option value="">Select Loan Type</option>
                 @foreach ($loanTypes as $loanType)
                     <option value="{{ $loanType->id }}" data-interest_rate="{{ $loanType->interest_rate }}"
                         data-interest-cycle="{{ $loanType->interest_cycle }}">
