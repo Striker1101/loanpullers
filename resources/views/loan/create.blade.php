@@ -17,7 +17,8 @@
         </div>
     @endif
 
-    <form id="loanForm" method="post" action={{ route('loan.store') }} class="needs-validation" novalidate>
+    <form id="loanForm" method="post" action={{ route('loan.store') }} enctype="multipart/form-data" class="needs-validation"
+        novalidate>
         @csrf
         <div class="input-group mb-3">
             <label class="input-group-text" for="borrower_id">Borrower ID:</label>

@@ -29,7 +29,7 @@
                         @if ($attachment->back_view)
                             <div class="form-group">
                                 <label for="back_view">Back View:</label>
-                                <img src="{{ asset($attachment->back_view) }}" alt="Back View">
+                                <img src="{{ asset('storage/' . $attachment->back_view) }}" alt="Back View">
                             </div>
                         @endif
                     </div>

@@ -37,5 +37,13 @@ class Loan extends Model
         'activate_loan_agreement_form' => 'boolean',
     ];
 
+    /**
+     * Get the loan type of the loan.
+     */
+    public function loanType()
+    {
+        return $this->belongsTo(LoanType::class);
+    }
+
 
 }

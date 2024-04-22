@@ -1,7 +1,7 @@
 @include('layouts.header', ['location' => 'Transfer'])
 @include('layouts.navigation')
 @include('layouts.menu')
-@extends('layouts.link', ['location' => 'Transfer', 'locations' => [['name' => 'Transfer', 'route' => '', 'active' => true]]])
+@extends('layouts.link', ['location' => '', 'locations' => [['name' => '', 'route' => '', 'active' => true]]])
 
 
 
@@ -34,37 +34,40 @@
             <div class="container">
                 <h4>All Transfers</h4>
                 <br>
-                <table class="table table-striped" id="transfers">
-                    <thead>
-                        <tr>
-                            <th scope="col">Transfer ID</th>
-                            <th scope="col">Amount</th>
-                            <th scope="col">From Wallet</th>
-                            <th scope="col">To Account Bank</th>
-                            <th scoope="col">Status</th>
-                            <th scope="col">Date</th>
-
-                            <th scope="col">Actions</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach ($transfers as $transfer)
+                <div class="table-responsive">
+                    <table class="table table-striped" id="transfers">
+                        <thead>
                             <tr>
-                                <td>{{ $transfer->uuid }}</td>
-                                <td>{{ $transfer->fee }}</td>
+                                <th scope="col">Transfer ID</th>
+                                <th scope="col">Amount</th>
+                                <th scope="col">From Wallet</th>
+                                <th scope="col">To Account Bank</th>
+                                <th scoope="col">Status</th>
+                                <th scope="col">Date</th>
 
-                                <td>{{ \App\Models\Wallet::where('id', $transfer->from_id)->value('name') }}</td>
-                                <td>{{ \App\Models\Account::where('id', $transfer->to_id)->value('bank_name') }}</td>
-                                <td>{{ $transfer->status }}</td>
-                                <td>{{ $transfer->created_at }}</td>
-                                <td>
-                                    <a href="{{ route('transfer.show', $transfer->id) }}" class="btn btn-info btn-sm"><i
-                                            class="fa fa-eye"></i> View</a>
-                                </td>
+                                <th scope="col">Actions</th>
                             </tr>
-                        @endforeach
-                    </tbody>
-                </table>
+                        </thead>
+                        <tbody>
+                            @foreach ($transfers as $transfer)
+                                <tr>
+                                    <td>{{ $transfer->uuid }}</td>
+                                    <td>{{ $transfer->fee }}</td>
+
+                                    <td>{{ \App\Models\Wallet::where('id', $transfer->from_id)->value('name') }}</td>
+                                    <td>{{ \App\Models\Account::where('id', $transfer->to_id)->value('bank_name') }}
+                                    </td>
+                                    <td>{{ $transfer->status }}</td>
+                                    <td>{{ $transfer->created_at }}</td>
+                                    <td>
+                                        <a href="{{ route('transfer.show', $transfer->id) }}"
+                                            class="btn btn-info btn-sm"><i class="fa fa-eye"></i> View</a>
+                                    </td>
+                                </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                </div>
 
                 <a class="btn btn-primary" href="{{ route('transfer.create') }}">Make a New Transfer</a>
             </div>
@@ -120,8 +123,3 @@
     </section>
     <!-- /.content -->
 </div>
-
-
-
-
-@include('layouts.footer')

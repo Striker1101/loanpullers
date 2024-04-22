@@ -62,7 +62,6 @@ class LoanController extends Controller
      */
     public function store(Request $request)
     {
-
         // Validate the incoming request data
         $validatedData = $request->validate([
             'borrower_id' => 'required|exists:borrowers,id',
@@ -93,6 +92,9 @@ class LoanController extends Controller
                 $imagePath = $request->file('image')->store('loan', 'public'); // Store the image in the 'images' directory
                 // Save the image path to the 'imgpath' field of the Loan model
                 $loan->imgpath = $imagePath;
+            } else {
+                throw new \Exception("Please Included Statement", 1);
+
             }
             // Save the loan
             $loan->save();
@@ -126,10 +128,12 @@ class LoanController extends Controller
      */
     public function show(Loan $loan)
     {
-        // Return a view with the specific loan data
+        // Eager load related data for borrower and loan type
+        $loan->load('borrower', 'loanType');
+
+        // Return a view with the specific loan data and related data for borrower and loan type
         return view('loan.show', compact('loan'));
     }
-
     /**
      * Show the form for editing the specified resource.
      *

@@ -35,9 +35,17 @@
                                 @if ($path == 'wallet' && $column == 'meta')
                                     <td>{{ json_decode($item->$column)->currency }}</td>
                                 @else
-                                    <td>{{ $item->$column }}</td>
+                                    <a href="{{ route('loan.index') }}">
+                                        @if ($path == 'loan' && $column == 'btn')
+                                            <button class="btn btn-primary"> View </button>
+                                        @else
+                                            <td>{{ $item->$column }}</td>
+                                        @endif
+
+                                    </a>
                                 @endif
                             @endforeach
+
                         </tr>
                     @endforeach
                 </tbody>
